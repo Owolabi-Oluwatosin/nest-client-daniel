@@ -22,13 +22,11 @@ function Routing(rops) {
 
 function App() {
   const dispatch = useDispatch();
-  const { userInfo, token } = useSelector((state) => state.user);
+  // const { userInfo, token } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getRecentPost());
-    }
-  }, [userInfo, dispatch, token]);
+    dispatch(getRecentPost());
+  }, []);
 
   return (
     <BrowserRouter>

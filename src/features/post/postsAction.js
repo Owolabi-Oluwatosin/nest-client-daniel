@@ -15,7 +15,7 @@ export const createPost = createAsyncThunk(
       // configure header's Content-Type as JSON
       const config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
         },
         credentails: "include",
@@ -45,9 +45,10 @@ export const getRecentPost = createAsyncThunk(
       // configure header's Content-Type as JSON
       const config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
         },
+        credentials: "include",
       };
       // make request to the backend
       const { data } = await axios.get(`${api}/api/posts`, config);
@@ -74,7 +75,7 @@ export const likeOnAPost = createAsyncThunk(
       // configure header's Content-Type as JSON
       const config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
         },
       };
@@ -107,7 +108,7 @@ export const getLikes = createAsyncThunk(
       // configure header's Content-Type as JSON
       const config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
         },
       };

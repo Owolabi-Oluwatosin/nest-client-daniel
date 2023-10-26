@@ -42,6 +42,7 @@ export const registerUser = createAsyncThunk(
 export const userLogin = createAsyncThunk(
   "api/auth/signin",
   async ({ email, password }, { rejectWithValue }) => {
+    console.log(email, password);
     try {
       // login user and getting user details and token
       const config = {
@@ -57,6 +58,7 @@ export const userLogin = createAsyncThunk(
         },
         config,
       );
+      console.log(data);
       // store user's token and user in local storage
       if (data.access_token) {
         localStorage.setItem("token", data.access_token);

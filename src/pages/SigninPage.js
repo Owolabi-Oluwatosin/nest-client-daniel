@@ -29,6 +29,7 @@ const SigninPage = () => {
   const handleClick = () => setShow(!show);
 
   const signIn = () => {
+    console.log(email, password);
     const data = {
       email: email,
       password: password,
