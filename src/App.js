@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
+import { PrivateRoute } from "./routing/ProtectedRoute";
+import HomePage from "./pages/HomePage";
+import SigninPage from "./pages/SigninPage";
+import SignupPage from "./pages/SignupPage";
+import { useSelector, useDispatch } from "react-redux";
+import { getRecentPost } from "./features/post/postsAction";
+
+function Routing(rops) {
+  return (
+    <Routes>
+      <Route element={<PrivateRoute />}>
+        <Route path='/' element={<HomePage />} />
+      </Route>
+      <Route path='/signin' element={<SigninPage />} />
+      <Route path='/signup' element={<SignupPage />} />
+      <Route path='*' element={<Navigate to='/' />} />
+    </Routes>
+  );
+}
 
 function App() {
+  const dispatch = useDispatch();
+  const { userInfo, token } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getRecentPost());
+    }
+  }, [userInfo, dispatch, token]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
   );
 }
 
