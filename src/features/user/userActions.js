@@ -5,7 +5,7 @@ import { api } from "../../urlConfig";
 //register userAction.js
 export const registerUser = createAsyncThunk(
   // action type string
-  "auth/signup",
+  "api/auth/signup",
   // callback function
   async ({ firstName, lastName, email, password }, { rejectWithValue }) => {
     try {
@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        `${api}/auth/signup`,
+        `${api}/api/auth/signup`,
         {
           firstName,
           lastName,
@@ -40,7 +40,7 @@ export const registerUser = createAsyncThunk(
 
 //login userActions.js
 export const userLogin = createAsyncThunk(
-  "auth/signin",
+  "api/auth/signin",
   async ({ email, password }, { rejectWithValue }) => {
     try {
       // login user and getting user details and token
@@ -50,7 +50,7 @@ export const userLogin = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        `${api}/auth/signin`,
+        `${api}/api/auth/signin`,
         {
           email,
           password,
@@ -92,7 +92,7 @@ export const updateUser = createAsyncThunk(
       };
       // sending request to the backend with token
       const { data } = await axios.patch(
-        `${api}/users/${userId}`,
+        `${api}/api/users/${userId}`,
         userData,
         config,
       );
@@ -125,7 +125,7 @@ export const deleteUser = createAsyncThunk(
         },
       };
       // sending request to the backend with token
-      const { data } = await axios.delete(`${api}/users/${userId}`, config);
+      const { data } = await axios.delete(`${api}/api/users/${userId}`, config);
       if (data.message === "User deleted successfully") {
         window.localStorage.clear();
         window.location.replace("/signin");

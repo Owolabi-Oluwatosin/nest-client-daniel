@@ -21,7 +21,7 @@ export const createPost = createAsyncThunk(
         credentails: "include",
       };
       // make request to backend
-      await axios.post(`${api}/posts/create`, data, config);
+      await axios.post(`${api}/api/posts/create`, data, config);
       //console.log(data)
     } catch (error) {
       // return custom error message from API if any
@@ -50,7 +50,7 @@ export const getRecentPost = createAsyncThunk(
         },
       };
       // make request to the backend
-      const { data } = await axios.get(`${api}/posts`, config);
+      const { data } = await axios.get(`${api}/api/posts`, config);
       //console.log(data);
       return data;
     } catch (error) {
@@ -79,7 +79,11 @@ export const likeOnAPost = createAsyncThunk(
         },
       };
       // sending request to the backend with token
-      const { data } = await axios.post(`${api}/likes/create`, postId, config);
+      const { data } = await axios.post(
+        `${api}/api/likes/create`,
+        postId,
+        config,
+      );
       console.log(data);
       return data;
     } catch (error) {
@@ -108,7 +112,7 @@ export const getLikes = createAsyncThunk(
         },
       };
       // sending request to the backend with token
-      const { data } = await axios.get(`${api}/likes`, config);
+      const { data } = await axios.get(`${api}/api/likes`, config);
       //console.log(data)
       return data;
     } catch (error) {
