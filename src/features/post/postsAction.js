@@ -45,7 +45,7 @@ export const getRecentPost = createAsyncThunk(
       // configure header's Content-Type as JSON
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
           Authorization: token ? `Bearer ${token}` : "",
         },
       };
@@ -74,7 +74,7 @@ export const likeOnAPost = createAsyncThunk(
       // configure header's Content-Type as JSON
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
           Authorization: token ? `Bearer ${token}` : "",
         },
       };
